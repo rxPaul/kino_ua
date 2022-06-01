@@ -1,0 +1,35 @@
+{% extends 'films/base.html' %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+<div class="container", style="display:flex, margin-top: 20px">
+    {% block content %}
+    <!--
+        <h1 style="margin-top: 40px;">Головна сторінка</h1>
+    -->
+        {% for film in films %}
+            <div class="alert alert-warning mt-2">
+                <h3>
+                    Фільм: {{film.title}}
+                </h3>
+                 <p>
+                     Опис: {{film.description}}
+                 </p>
+                <p>
+                    {{film.year}}
+                </p>
+                <p>
+                    {{film.actors}}
+                </p>
+                <p>
+                    {{film.category}}
+                </p>
+                <p>
+                    {{film.rating}}
+                </p>
+            </div>
+        {% endfor %}
+    {% endblock %}
+</div>
