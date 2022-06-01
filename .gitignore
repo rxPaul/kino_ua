@@ -2,3 +2,4 @@
 /venv_server
 .idea
 pyvenv.cfg
+*__pycache__/
