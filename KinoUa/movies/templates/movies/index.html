@@ -1,4 +1,4 @@
-{% extends 'films/base.html' %}
+{% extends 'movies/base.html' %}
 
 {% block title %}
 {{title}}
@@ -9,25 +9,25 @@
     <!--
         <h1 style="margin-top: 40px;">Головна сторінка</h1>
     -->
-        {% for film in films %}
+        {% for movie in movies %}
             <div class="alert alert-warning mt-2">
                 <h3>
-                    Фільм: {{film.title}}
+                    Фільм: {{movie.title}}
                 </h3>
-                 <p>
-                     Опис: {{film.description}}
-                 </p>
                 <p>
-                    {{film.year}}
+                    Опис: {{movie.description}}
                 </p>
                 <p>
-                    {{film.actors}}
+                    {{movie.year}}
                 </p>
                 <p>
-                    {{film.category}}
+                    {{movie.actors}}
                 </p>
                 <p>
-                    {{film.rating}}
+                    {{movie.category}}
+                </p>
+                <p>
+                    {{movie.rating}}
                 </p>
             </div>
         {% endfor %}

@@ -1,6 +1,7 @@
 # created by virtualenv automatically
 /venv_server
+/venv
 .idea
 pyvenv.cfg
 *__pycache__/
-KinoUa/db.sqlite3
+*db.sqlite3
