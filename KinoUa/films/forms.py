@@ -1,9 +1,9 @@
-from .models import Films
+from .models import Movie
 from django.forms import ModelForm, TextInput, Textarea
 
 class AddForm(ModelForm):
     class Meta:
-        model = Films
+        model = Movie
 
         fields = ["title", "description", "rating", "year", "category", "actors"]
         widgets = {

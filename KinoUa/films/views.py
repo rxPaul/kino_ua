@@ -3,12 +3,12 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from .forms import AddForm
-from .models import Films
+from .models import Movie
 
 
 # Create your views here.
 def index(request):
-    film_s = Films.objects.all()
+    film_s = Movie.objects.all()
     return render(request, 'films/index.html', {'title': 'Головна', 'films': film_s})
 
 

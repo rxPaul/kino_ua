@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Films(models.Model):
+class Movie(models.Model):
     title = models.CharField('Назва', max_length=50)
     description = models.TextField('Опис')
     rating = models.IntegerField('Рейтинг')
@@ -20,3 +20,8 @@ class Films(models.Model):
         verbose_name = 'Фільм'
         verbose_name_plural = 'Фільми'
         ordering = ('time_create', 'title')
+
+
+class Category(models.Model):
+    pass
+
