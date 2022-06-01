@@ -3,3 +3,4 @@
 .idea
 pyvenv.cfg
 *__pycache__/
+KinoUa/db.sqlite3
