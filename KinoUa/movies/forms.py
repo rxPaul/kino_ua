@@ -1,7 +1,7 @@
 from .models import Movie
 from django.forms import ModelForm, TextInput, Textarea
 
-class AddForm(ModelForm):
+class MovieCreateForm(ModelForm):
     class Meta:
         model = Movie
 

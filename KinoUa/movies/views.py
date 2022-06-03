@@ -2,43 +2,43 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from .forms import AddForm
+from .forms import MovieCreateForm
 from .models import Movie
 
 
 # Create your views here.
 def index(request):
-    film_s = Movie.objects.all()
-    return render(request, 'films/index.html', {'title': 'Головна', 'films': film_s})
+    movies = Movie.objects.all()
+    return render(request, 'movies/index.html', {'title': 'Головна', 'movies': movies})
 
 
 def categories(request):
-    return render(request, 'films/categories.html')
+    return render(request, 'movies/categories.html')
 
 
 def new(request):
-    return render(request, 'films/new.html')
+    return render(request, 'movies/new.html')
 
 
 def top(request):
-    return render(request, 'films/top.html')
+    return render(request, 'movies/top.html')
 
 
 def coming_soon(request):
-    return render(request, 'films/coming_soon.html')
+    return render(request, 'movies/coming_soon.html')
 
 def add(request):
     error = ''
     if request.method == 'POST':
-        form = AddForm(request.POST)
+        form = MovieCreateForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
         else:
             error = ('Невірна форма')
-    form = AddForm()
+    form = MovieCreateForm()
     context = {
         'form': form,
         'error': error
     }
-    return render(request, 'films/add.html', context)
+    return render(request, 'movies/add.html', context)
