@@ -5,7 +5,7 @@ class MovieCreateForm(ModelForm):
     class Meta:
         model = Movie
 
-        fields = ["title", "description", "rating", "year", "category", "actors"]
+        fields = ["title", "description", "rating", "year", "categories", "actors"]
         widgets = {
             'title': TextInput(attrs={
                 'class': 'form-control',
@@ -19,7 +19,7 @@ class MovieCreateForm(ModelForm):
             'year': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть рік'}),
-            'category': TextInput(attrs={
+            'categories': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть категорію'}),
             'actors': TextInput(attrs={

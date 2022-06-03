@@ -7,7 +7,15 @@ class Movie(models.Model):
     description = models.TextField('Опис')
     rating = models.IntegerField('Рейтинг')
     year = models.IntegerField('Рік')
+<<<<<<< Updated upstream:KinoUa/movies/models.py
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+=======
+<<<<<<< Updated upstream:KinoUa/films/models.py
+    category = models.CharField('Категорія', max_length=50)
+=======
+    categories = models.ManyToManyField('Category')
+>>>>>>> Stashed changes:KinoUa/movies/models.py
+>>>>>>> Stashed changes:KinoUa/films/models.py
     actors = models.CharField('Актори', max_length=50)
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
