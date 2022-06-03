@@ -7,7 +7,7 @@ class Movie(models.Model):
     description = models.TextField('Опис')
     rating = models.IntegerField('Рейтинг')
     year = models.IntegerField('Рік')
-    category = models.CharField('Категорія', max_length=50)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
     actors = models.CharField('Актори', max_length=50)
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
@@ -23,5 +23,7 @@ class Movie(models.Model):
 
 
 class Category(models.Model):
-    pass
+    name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
