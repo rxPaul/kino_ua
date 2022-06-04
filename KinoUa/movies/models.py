@@ -8,7 +8,7 @@ class Movie(models.Model):
     rating = models.IntegerField('Рейтинг')
     year = models.IntegerField('Рік')
     categories = models.ManyToManyField('Category')
-    actors = models.CharField('Актори', max_length=50)
+    actors = models.ManyToManyField('Actor')
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
 
@@ -24,6 +24,15 @@ class Movie(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class Actor(models.Model):
+    name = models.CharField(max_length=50)
+    age = models.IntegerField()
+    nationality = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

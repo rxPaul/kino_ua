@@ -29,7 +29,9 @@
                     {% endfor %}
                 </p>
                 <p>
-                    {{movie.actors}}
+                   {% for actor in movie.actors.all %}
+                    {{actor.name}}
+                    {% endfor %}
                 </p>
             </div>
         {% endfor %}
