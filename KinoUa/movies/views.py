@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
 
 from .forms import MovieCreateForm
 from .models import Movie

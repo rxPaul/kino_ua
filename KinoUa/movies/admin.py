@@ -6,5 +6,9 @@ class MovieAdmin(admin.ModelAdmin):
     list_display = ('title', 'time_create')
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Category)

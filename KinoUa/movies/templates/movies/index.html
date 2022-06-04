@@ -4,7 +4,7 @@
 {{title}}
 {% endblock %}
 
-<div class="container", style="display:flex, margin-top: 20px">
+<div class="container" style="display:flex, margin-top: 20px">
     {% block content %}
     <!--
         <h1 style="margin-top: 40px;">Головна сторінка</h1>
@@ -18,29 +18,18 @@
                     Опис: {{movie.description}}
                 </p>
                 <p>
+                    {{movie.rating}}
+                </p>
+                <p>
                     {{movie.year}}
                 </p>
                 <p>
-                    {{movie.actors}}
-                </p>
-                <p>
-<<<<<<< Updated upstream:KinoUa/movies/templates/movies/index.html
-                    {{movie.category}}
-                </p>
-                <p>
-                    {{movie.rating}}
-=======
-<<<<<<< Updated upstream:KinoUa/films/templates/films/index.html
-                    {{film.rating}}
-=======
                     {% for category in movie.categories.all %}
                     {{category.name}}
                     {% endfor %}
                 </p>
                 <p>
-                    {{movie.rating}}
->>>>>>> Stashed changes:KinoUa/movies/templates/movies/index.html
->>>>>>> Stashed changes:KinoUa/films/templates/films/index.html
+                    {{movie.actors}}
                 </p>
             </div>
         {% endfor %}
