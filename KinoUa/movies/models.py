@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 
 # Create your models here.
@@ -31,8 +32,37 @@ class Category(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     age = models.IntegerField()
+    birth_date = models.DateField(max_length=8, null=True)
     nationality = models.CharField(max_length=50)
+
+
 
     def __str__(self):
         return self.name
+
+
+    class Meta:
+        verbose_name = 'Актор'
+        verbose_name_plural = 'Актори'
+        ordering = ('name',)
+
+
+
+class ActorNew(models.Model):
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+    birth_date = models.DateField(max_length=8, null=True)
+    nationality = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.last_name
+
+
+    class Meta:
+        verbose_name = 'Актор'
+        verbose_name_plural = 'Актори'
+        ordering = ('first_name', 'last_name')
+
