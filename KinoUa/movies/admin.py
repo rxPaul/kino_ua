@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ActorAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('first_name', 'last_name')
 
 
 admin.site.register(Movie, MovieAdmin)

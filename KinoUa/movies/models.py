@@ -31,7 +31,6 @@ class Category(models.Model):
 
 
 class Actor(models.Model):
-    name = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     age = models.IntegerField()
@@ -47,7 +46,7 @@ class Actor(models.Model):
     class Meta:
         verbose_name = 'Актор'
         verbose_name_plural = 'Актори'
-        ordering = ('name',)
+        ordering = ('last_name', 'first_name')
 
 
 

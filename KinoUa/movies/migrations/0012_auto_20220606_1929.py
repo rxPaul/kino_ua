@@ -3,11 +3,11 @@
 from django.db import migrations
 
 
-def combine_names(apps, schema_editor):
-    Person = apps.get_model('movies', 'Actor')
-    for person in Person.objects.all():
-        person.first_name,  person.last_name = person.name.split()
-        person.save()
+def split_name_to_first_and_last_name(apps, schema_editor):
+    Actor = apps.get_model('movies', 'Actor')
+    for actor in Actor.objects.all():
+        actor.first_name,  actor.last_name = actor.name.split()
+        actor.save()
 
 class Migration(migrations.Migration):
 
@@ -16,5 +16,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(combine_names)
+        migrations.RunPython(split_name_to_first_and_last_name)
     ]
