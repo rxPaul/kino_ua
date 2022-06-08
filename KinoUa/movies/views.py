@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 
 from .forms import MovieCreateForm
-from .models import Movie
+from .models import Movie, Actor
 
 
 # Create your views here.
@@ -41,3 +41,11 @@ def add(request):
         'error': error
     }
     return render(request, 'movies/add.html', context)
+
+def actor_view(request):
+    actors = Actor.objects.all()
+    return render(request, 'movies/actors.html', {'actors': actors})
+
+def actor_from_id(request, id):
+    actor = Actor.objects.get(pk=id)
+    return render(request, 'movies/actor.html', {'actor': actor})

@@ -1,0 +1,23 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block content %}
+<div class="text-left">
+	<h2>All Actors</h2>
+	<div class="row">
+		{% for actor in actors %}
+		<div class="col-12 mb-2">
+			<span>First name: {{ actor.last_name }}</span><br>
+			<span>Last name: {{ actor.first_name }}</span><br>
+			<span>Age: {{ actor.age }}</span><br>
+			<span>Birth date: {{ actor.birth_date|date:"d.m.Y" }}</span><br>
+			<span>Nationality: {{ actor.nationality }}</span><br>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'movies/base.html' %}
 
 {% block title %}
-{{title}}
+{{ title }}
 {% endblock %}
 
 <div class="container" style="display:flex, margin-top: 20px">
@@ -12,25 +12,27 @@
         {% for movie in movies %}
             <div class="alert alert-warning mt-2">
                 <h3>
-                    Фільм: {{movie.title}}
+                    Назва: {{ movie.title }}
                 </h3>
                 <p>
-                    Опис: {{movie.description}}
+                    Опис: {{ movie.description }}
                 </p>
                 <p>
-                    {{movie.rating}}
+                    Рейтинг: {{ movie.rating }}
                 </p>
                 <p>
-                    {{movie.year}}
+                    Рік: {{ movie.year }}
                 </p>
                 <p>
+                    Категорії:
                     {% for category in movie.categories.all %}
-                    {{category.name}}
+                        <a style="border: 1px solid black; border-radius: 500px; padding: 4px;">{{ category.name }}</a>
                     {% endfor %}
                 </p>
                 <p>
-                   {% for actor in movie.actors.all %}
-                    {{actor.name}}
+                    Актори:
+                    {% for actor in movie.actors.all %}
+                        <a type="button" class="btn btn-info" href="/actor/{{ actor.id }}" style="border: 1px solid black; border-radius: 500px; padding: 4px;">{{ actor.last_name }} {{ actor.first_name }}</a>
                     {% endfor %}
                 </p>
             </div>
