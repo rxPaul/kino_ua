@@ -6,7 +6,14 @@ from django.db import migrations
 def split_name_to_first_and_last_name(apps, schema_editor):
     Actor = apps.get_model('movies', 'Actor')
     for actor in Actor.objects.all():
-        actor.first_name,  actor.last_name = actor.name.split()
+        actor.first_name, *last_name = actor.name.split()
+        actor.last_name = ' '.join(last_name)
+        actor.save()
+
+def join_name_from_first_and_last_name(apps, schema_editor):
+    Actor = apps.get_model('movies', 'Actor')
+    for actor in Actor.objects.all():
+        actor.name = f'{actor.first_name} {actor.last_name}'
         actor.save()
 
 class Migration(migrations.Migration):
@@ -16,5 +23,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(split_name_to_first_and_last_name)
+        migrations.RunPython(split_name_to_first_and_last_name, join_name_from_first_and_last_name)
     ]
