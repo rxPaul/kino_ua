@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 from .forms import MovieCreateForm
 from .models import Movie
 
@@ -8,7 +9,7 @@ from .models import Movie
 # Create your views here.
 def index(request):
     movies = Movie.objects.all()
-    return render(request, 'movies/index.html', {'title': 'Головна', 'movies': movies})
+    return render(request, 'movies/index.html', {'title': 'Home', 'movies': movies})
 
 
 def categories(request):
@@ -34,10 +35,18 @@ def add(request):
             form.save()
             return redirect('/')
         else:
-            error = ('Невірна форма')
+            error = ('Wrong form')
     form = MovieCreateForm()
     context = {
         'form': form,
         'error': error
     }
     return render(request, 'movies/add.html', context)
+
+# def login(request):
+#     pass
+
+
+# class SignUp(CreateView):
+#     form_class = UserCreationForm()
+#     success_url = reverse_lazy('login')

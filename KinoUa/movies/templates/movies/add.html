@@ -1,23 +1,23 @@
 {% extends 'movies/base.html' %}
 
 {% block title %}
-Додати фільм
+Add movie
 {% endblock %}
 
 {% block content %}
-<h1>Додати фільм</h1>
+<h1>Add movie</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.title }}<br>
     {{ form.description }}<br>
     {{ form.rating }}<br>
     {{ form.year }}<br>
-    {{ form.category }}<br>
+    {{ form.categories }}<br>
     {{ form.actors }}<br>
     <span>{{ error }}</span>
 
 
-    <button type="submit", class="btn btn-success">Додати</button>
+    <button type="submit", class="btn btn-success">Add</button>
 
     </button>
 

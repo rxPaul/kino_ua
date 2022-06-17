@@ -1,30 +1,55 @@
-from .models import Movie
-from django.forms import ModelForm, TextInput, Textarea
+from django.db.models import ManyToManyField
 
-class MovieCreateForm(ModelForm):
+from .models import Movie, Category, Actor
+from django import forms
+
+
+class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
 
         fields = ["title", "description", "rating", "year", "categories", "actors"]
         widgets = {
-            'title': TextInput(attrs={
+            'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введіть назву '}),
-            'description': Textarea(attrs={
+                'placeholder': 'Enter movie title:'}),
+            'description': forms.Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введіть опис'}),
-            'rating': TextInput(attrs={
+                'placeholder': 'Enter description:'}),
+            'rating': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Рейтинг'}),
-            'year': TextInput(attrs={
+                'placeholder': 'Rating:'}),
+            'year': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введіть рік'}),
-            'categories': TextInput(attrs={
+                'placeholder': 'Year:'}),
+            'categories': forms.SelectMultiple(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter category:'
+            }),
+            'actors': forms.SelectMultiple(
+                attrs={
                 'class': 'form-control',
-                'placeholder': 'Введіть категорію'}),
-            'actors': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Додайте акторів'})
-            }
+                'placeholder': 'Enter actors:'})
+        }
 
-
+# class CreateUserForm(UserCreationForm):
+#     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+#     password2 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'password1', 'password2']
+#         widgets = {
+#             'username': TextInput(attrs={
+#                 'class': 'form-control',
+#                 'placeholder': 'Username:'}),
+#             'email': TextInput(attrs={
+#                 'class': 'form-control',
+#                 'placeholder': 'Email:'}),
+#             'password1': forms.PasswordInput(attrs={
+#                 'class': 'form-input',
+#                 'placeholder': 'Password:'}),
+#             'password2': forms.PasswordInput(attrs={
+#                 'class': 'form-input',
+#                 'placeholder': 'Confirm your password:'})
+#             }

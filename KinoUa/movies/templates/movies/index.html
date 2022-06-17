@@ -12,25 +12,27 @@
         {% for movie in movies %}
             <div class="alert alert-warning mt-2">
                 <h3>
-                    Фільм: {{movie.title}}
+                    Movie: {{movie.title}}
                 </h3>
                 <p>
-                    Опис: {{movie.description}}
+                    Description: {{movie.description}}
                 </p>
                 <p>
-                    {{movie.rating}}
+                    Rating: {{movie.rating}}
                 </p>
                 <p>
-                    {{movie.year}}
+                    Age: {{movie.year}}
                 </p>
                 <p>
+                    Categories:
                     {% for category in movie.categories.all %}
                     {{category.name}}
                     {% endfor %}
                 </p>
                 <p>
+                    Actors:
                    {% for actor in movie.actors.all %}
-                    {{actor.name}}
+                    {{actor.first_name}} {{actor.last_name}}
                     {% endfor %}
                 </p>
             </div>

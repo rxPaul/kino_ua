@@ -8,6 +8,9 @@ urlpatterns = [
     path('coming_soon', views.coming_soon, name='coming_soon'),
     path('top', views.top, name='top'),
     path('add', views.add, name='add'),
+    # path('register', views, name='register'),
+    # path('login', views.login, name='login')
+
 
 
 ]

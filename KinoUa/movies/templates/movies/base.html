@@ -21,22 +21,30 @@
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Головна</a>
+                    <a class="nav-link " aria-current="page" href="{% url 'home'%}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'categories'%}">Категорії</a>
+                    <a class="nav-link" href="{% url 'categories'%}">Categories</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'new' %}">Новинки</a>
+                    <a class="nav-link" href="{% url 'new' %}">New</a>
                   </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{% url 'top' %}">ТОП 100</a>
+                    <a class="nav-link" href="{% url 'top' %}">TOP 100</a>
                   </li>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add' %}">Додати фільм</a>
+                    <a class="nav-link" href="{% url 'add' %}">Add movie</a>
                   </li>
                 </ul>
+                  <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#">Register</a>
+                  </li>
+                      <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#">Login</a>
+                  </li>
+                  </ul>
                 <form class="d-flex" role="search">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button>
