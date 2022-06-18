@@ -15,6 +15,9 @@
                     Movie: {{movie.title}}
                 </h3>
                 <p>
+                    {% load static %}
+                    <img src="{% static movie.movie_poster %}"></p>
+                <p>
                     Description: {{movie.description}}
                 </p>
                 <p>

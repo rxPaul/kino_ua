@@ -1,5 +1,3 @@
-from django.db.models import ManyToManyField
-
 from .models import Movie, Category, Actor
 from django import forms
 
@@ -8,11 +6,12 @@ class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
 
-        fields = ["title", "description", "rating", "year", "categories", "actors"]
+        fields = ["title", "movie_poster", "description", "rating", "year", "categories", "actors"]
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter movie title:'}),
+            'movie_poster': forms.ClearableFileInput(),
             'description': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter description:'}),
@@ -26,11 +25,11 @@ class MovieCreateForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'Enter category:'
-            }),
+                }),
             'actors': forms.SelectMultiple(
                 attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter actors:'})
+                    'class': 'form-control',
+                    'placeholder': 'Enter actors:'})
         }
 
 # class CreateUserForm(UserCreationForm):

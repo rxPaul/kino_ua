@@ -1,17 +1,17 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Movie(models.Model):
     title = models.CharField('Title', max_length=50)
     description = models.TextField('Description')
-    rating = models.IntegerField('Rating')
+    rating = models.IntegerField('Rating', validators = [MinValueValidator(0), MaxValueValidator(10)])
     year = models.IntegerField('Age')
     categories = models.ManyToManyField('Category')
     actors = models.ManyToManyField('Actor')
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
-    # image = models.ImageField()
+    movie_poster = models.ImageField(upload_to='posters/', blank=True, null=True, height_field=240, width_field=160)
 
     def __str__(self):
         return self.title
