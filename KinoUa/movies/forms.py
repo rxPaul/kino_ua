@@ -1,28 +1,28 @@
 from .models import Movie
-from django.forms import ModelForm, TextInput, Textarea
+from django import forms
 
-class MovieCreateForm(ModelForm):
+class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
 
         fields = ["title", "description", "rating", "year", "categories", "actors"]
         widgets = {
-            'title': TextInput(attrs={
+            'title': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть назву '}),
-            'description': Textarea(attrs={
+            'description': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть опис'}),
-            'rating': TextInput(attrs={
+            'rating': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Рейтинг'}),
-            'year': TextInput(attrs={
+            'year': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть рік'}),
-            'categories': TextInput(attrs={
+            'categories': forms.SelectMultiple(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введіть категорію'}),
-            'actors': TextInput(attrs={
+            'actors': forms.SelectMultiple(attrs={
                 'class': 'form-control',
                 'placeholder': 'Додайте акторів'})
             }

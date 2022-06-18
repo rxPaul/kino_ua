@@ -1,14 +1,15 @@
 from django.db import models
 from datetime import date
 from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
 class Movie(models.Model):
-    title = models.CharField('Назва', max_length=50)
-    description = models.TextField('Опис')
-    rating = models.IntegerField('Рейтинг')
-    year = models.IntegerField('Рік')
+    title = models.CharField('Title', max_length=50)
+    description = models.TextField('Description')
+    rating = models.IntegerField('Rating', validators=[MinValueValidator(1), MaxValueValidator(10)])
+    year = models.IntegerField('Year', validators=[MinValueValidator(1900)])
     categories = models.ManyToManyField('Category')
     actors = models.ManyToManyField('Actor')
     time_create = models.DateTimeField(auto_now_add=True, null=True)
@@ -18,8 +19,8 @@ class Movie(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Фільм'
-        verbose_name_plural = 'Фільми'
+        verbose_name = 'Movie'
+        verbose_name_plural = 'Movies'
         ordering = ('time_create', 'title')
 
 
@@ -40,7 +41,7 @@ class Actor(models.Model):
         return f'{self.last_name} {self.first_name}'
 
     @property
-    def age(self): 
+    def age(self):
         today = date.today()
         born = self.birth_date
         return today.year - born.year - ((today.month, today.day) < (born.month, born.day))

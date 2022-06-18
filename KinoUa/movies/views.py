@@ -27,25 +27,23 @@ def coming_soon(request):
     return render(request, 'movies/coming_soon.html')
 
 def add(request):
-    error = ''
-    if request.method == 'POST':
-        form = MovieCreateForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            error = ('Невірна форма')
-    form = MovieCreateForm()
-    context = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'movies/add.html', context)
+    if request.method == 'GET':
+        form = MovieCreateForm()
+        return render(request, 'movies/add.html', {'form': form, 'error': ''})
+
+    form = MovieCreateForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    return render(request, 'movies/add.html', {'form': form, 'error': 'Невірна форма'})
 
 def actor_view(request):
     actors = Actor.objects.all()
     return render(request, 'movies/actors.html', {'actors': actors})
 
 def actor_from_id(request, id):
-    actor = Actor.objects.get(pk=id)
-    return render(request, 'movies/actor.html', {'actor': actor})
+    if Actor.objects.filter(pk=id).exists():
+        actor = Actor.objects.get(pk=id)
+        return render(request, 'movies/actor.html', {'actor': actor})
+    return redirect('/')
+    
