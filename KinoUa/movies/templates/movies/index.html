@@ -1,8 +1,10 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 
 {% block title %}
 {{title}}
 {% endblock %}
+
 
 <div class="container" style="display:flex, margin-top: 20px">
     {% block content %}
@@ -15,8 +17,7 @@
                     Movie: {{movie.title}}
                 </h3>
                 <p>
-                    {% load static %}
-                    <img src="{% static movie.movie_poster %}"></p>
+                    <img src="/static/images/{{movie.movie_poster}}"></p>
                 <p>
                     Description: {{movie.description}}
                 </p>

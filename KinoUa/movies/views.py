@@ -30,7 +30,7 @@ def coming_soon(request):
 def add(request):
     error = ''
     if request.method == 'POST':
-        form = MovieCreateForm(request.POST)
+        form = MovieCreateForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
