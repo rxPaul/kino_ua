@@ -1,14 +1,16 @@
-from django.conf import settings
 from django.urls import path
-from . import views
-from django.conf.urls.static import static
+from .views import *
+
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('categories', views.categories, name='categories'),
-    path('new', views.new, name='new'),
-    path('coming_soon', views.coming_soon, name='coming_soon'),
-    path('top', views.top, name='top'),
-    path('add', views.add, name='add'),
+    path('', index, name='home'),
+    path('movie/<int:post_id>/', showMovie, name='movie'),
+    path('categories/', categories, name='categories'),
+    path('new', new, name='new'),
+    path('coming_soon', coming_soon, name='coming_soon'),
+    path('top', top, name='top'),
+    path('add_movie', addMovie, name='add_movie'),
+    path('update_movie/<str:pk>', updateMovie, name='update_movie'),
+
     # path('register', views, name='register'),
     # path('login', views.login, name='login')
 

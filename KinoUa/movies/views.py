@@ -1,7 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
 from .forms import MovieCreateForm
 from .models import Movie
 
@@ -11,6 +8,9 @@ def index(request):
     movies = Movie.objects.all()
     return render(request, 'movies/index.html', {'title': 'Home', 'movies': movies})
 
+def showMovie(request):
+    movies = Movie.objects.all()
+    return render(request, 'movies/movie.html', {'title': 'title', 'movies': movies})
 
 def categories(request):
     return render(request, 'movies/categories.html')
@@ -27,7 +27,8 @@ def top(request):
 def coming_soon(request):
     return render(request, 'movies/coming_soon.html')
 
-def add(request):
+
+def addMovie(request):
     error = ''
     if request.method == 'POST':
         form = MovieCreateForm(request.POST, request.FILES)
@@ -43,10 +44,17 @@ def add(request):
     }
     return render(request, 'movies/add.html', context)
 
+
+def updateMovie(request, pk):
+    obj = Movie.objects.get(pk)
+    form = MovieCreateForm(instance=obj)
+    context = {'form': form}
+    return render(request, 'movies/add.html', context)
+#
 # def login(request):
 #     pass
-
-
+#
+#
 # class SignUp(CreateView):
 #     form_class = UserCreationForm()
 #     success_url = reverse_lazy('login')

@@ -1,11 +1,11 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
+
 class Movie(models.Model):
     title = models.CharField('Title', max_length=50)
     description = models.TextField('Description')
-    rating = models.IntegerField('Rating', validators = [MinValueValidator(0), MaxValueValidator(10)])
+    rating = models.IntegerField('Rating', validators=[MinValueValidator(0), MaxValueValidator(10)])
     year = models.IntegerField('Age')
     categories = models.ManyToManyField('Category')
     actors = models.ManyToManyField('Actor')
@@ -20,6 +20,9 @@ class Movie(models.Model):
         verbose_name = 'Movie'
         verbose_name_plural = 'Movies'
         ordering = ('time_create', 'title')
+
+    # def get_absolute_url(self):
+    #    return reverse('movies', kwargs={'id': self.pk})
 
 
 class Category(models.Model):

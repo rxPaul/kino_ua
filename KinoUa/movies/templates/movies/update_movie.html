@@ -6,7 +6,7 @@ Add movie
 
 {% block content %}
 <h1 xmlns="http://www.w3.org/1999/html">Add movie</h1>
-<form method="post", enctype="multipart/form-data">
+<form method="POST", enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.title }}<br>
     {{ form.movie_poster}}<br>
@@ -18,10 +18,24 @@ Add movie
     <span>{{ error }}</span>
 
 
-    <button type="submit", class="btn btn-success">Add movie</button>
+    <button type="submit", class="btn btn-success">Update movie</td>
 
     </button>
 
 
 </form>
 {% endblock %}
+
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+
+        <!-- form as paragraph -->
+        {{ form.as_p }}
+
+        <input type="submit" value="Update">
+    </form>
+
+</div>

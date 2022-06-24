@@ -1,4 +1,4 @@
-from .models import Movie, Category, Actor
+from .models import Movie
 from django import forms
 
 
