@@ -6,7 +6,7 @@ class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
 
-        fields = ["title", "movie_poster", "description", "rating", "year", "categories", "actors"]
+        fields = ["title", "movie_poster", "description", "rating", "year", "categories", "actors", "slug"]
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -29,8 +29,15 @@ class MovieCreateForm(forms.ModelForm):
             'actors': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Enter actors:'})
+                    'placeholder': 'Enter actors:'}),
+            'slug': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter slug:'}),
         }
+        # slug = forms.SlugField(
+        #             help_text="Slug is a field in autocomplete mode, but if you want you can modify its contents",
+        #             widget=forms.TextInput(attrs={"class": "form-control form-control-sm", 'placeholder': 'Enter slug:'}),
+        #             )
 
 # class CreateUserForm(UserCreationForm):
 #     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))

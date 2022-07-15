@@ -12,12 +12,12 @@
         <h1 style="margin-top: 40px;">Головна сторінка</h1>
     -->
         {% for movie in movies %}
-            <div class="alert alert-warning mt-2">
+            <div class="text-bg-secondary p-3">
                 <h3>
                     Movie: {{movie.title}}
                 </h3>
                 <p>
-                    <img src="/static/images/{{movie.movie_poster}}"></p>
+                    <img src="/static/images/{{movie.movie_poster}}" width="260" height="385"></p>
                 <p>
                     Description: {{movie.description}}
                 </p>

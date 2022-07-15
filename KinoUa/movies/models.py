@@ -1,17 +1,33 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.shortcuts import reverse
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def get_absolute_url(self):
+        return reverse('category_list_url', kwargs={'slug': self.slug})
 
 class Movie(models.Model):
     title = models.CharField('Title', max_length=50)
     description = models.TextField('Description')
-    rating = models.IntegerField('Rating', validators=[MinValueValidator(0), MaxValueValidator(10)])
+    rating = models.FloatField('Rating', validators=[MinValueValidator(0), MaxValueValidator(10)], blank=True)
     year = models.IntegerField('Age')
-    categories = models.ManyToManyField('Category')
+    categories = models.ManyToManyField(Category, verbose_name='Category')
     actors = models.ManyToManyField('Actor')
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
     movie_poster = models.ImageField(upload_to='posters/', blank=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -19,17 +35,13 @@ class Movie(models.Model):
     class Meta:
         verbose_name = 'Movie'
         verbose_name_plural = 'Movies'
-        ordering = ('time_create', 'title')
+        ordering = ['-time_create']
 
     # def get_absolute_url(self):
     #    return reverse('movies', kwargs={'id': self.pk})
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
 
 
 class Actor(models.Model):
@@ -38,6 +50,7 @@ class Actor(models.Model):
     age = models.IntegerField()
     birth_date = models.DateField(max_length=8, null=True)
     nationality = models.CharField(max_length=50)
+
 
     def __str__(self):
         return f'{self.last_name} {self.first_name}'
