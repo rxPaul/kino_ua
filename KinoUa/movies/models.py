@@ -17,6 +17,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category_list_url', kwargs={'slug': self.slug})
 
+
 class Movie(models.Model):
     title = models.CharField('Title', max_length=50)
     description = models.TextField('Description')
@@ -37,8 +38,8 @@ class Movie(models.Model):
         verbose_name_plural = 'Movies'
         ordering = ['-time_create']
 
-    # def get_absolute_url(self):
-    #    return reverse('movies', kwargs={'id': self.pk})
+    def get_absolute_url(self):
+        return reverse('movie', kwargs={'slug': self.slug})
 
 
 

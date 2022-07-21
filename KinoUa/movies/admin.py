@@ -3,7 +3,7 @@ from .models import Movie, Category, Actor
 
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('title', 'time_create')
+    list_display = ('title', 'time_create', 'slug')
 
 
 class CategoryAdmin(admin.ModelAdmin):

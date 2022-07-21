@@ -12,7 +12,13 @@ def index(request):
 class MovieDetail(View):
     def get(self, request, slug):
         movie = Movie.objects.get(slug__iexact=slug)
-        return render(request, 'movies/movie.html', {'movie': movie})
+        return render(request, 'movies/show_movie.html', {'movie': movie})
+
+
+class CategoryDetail(View):
+    def get(self, request, slug):
+        category = Category.objects.get(slug__iexact=slug)
+        return render(request, 'movies/show_category.html', {'category': category})
 
 
 class MovieListView(View):
@@ -20,6 +26,7 @@ class MovieListView(View):
         movies = Movie.objects.all()
         template = 'movies/movie_list.html'
         return render(request, template, context={'movies': movies})
+
 
 class CategoryListView(View):
 
@@ -55,14 +62,14 @@ def addMovie(request):
         'form': form,
         'error': error
     }
-    return render(request, 'movies/add.html', context)
+    return render(request, 'movies/movie_adding_form.html', context)
 
 
-def updateMovie(request, id):
+def updateMovie(request, slug):
     obj = Movie.objects.get(id)
     form = MovieCreateForm(instance=obj)
     context = {'form': form}
-    return render(request, 'movies/add.html', context)
+    return render(request, 'movies/movie_adding_form.html', context)
 #
 # def login(request):
 #     pass

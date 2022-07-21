@@ -1,0 +1,31 @@
+{% extends 'movie/base.html' %}
+
+{% block title %}
+    {{ category.name }}
+{% endblock %}
+
+{% block content %}
+    {% for movie in category.movies.all %}
+
+<!--        <div class="card mb-4">-->
+<!--            <div class="card-header">-->
+<!--                <h3 class="card-title">{{movie.title}}</h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <div class="bd-placeholder-img img-thumbnail">-->
+<!--                <img src="/static/images/{{movie.movie_poster}}" class="img-thumbnail" alt="movie card" width="260" height="385">-->
+<!--            </div>-->
+<!--                <p class="lead">{{movie.description|truncatewords:15}}</p>-->
+<!--                <a href="{{ movie.get_absolute_url }}" class="btn btn-primary">Read</a>-->
+<!--        </div>-->
+            <div class="media">
+                <img class="align-self-start mr-3" src="/static/images/{{movie.movie_poster}}" alt="Generic placeholder image">
+                <div class="media-body">
+                    <h5 class="mt-0">{{movie.title}}</h5>
+                    <p>{{ movie.description|truncatewords:15 }}</p>
+                    <a href="{{ movie.get_absolute_url }}" class="btn btn-primary">Read</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
