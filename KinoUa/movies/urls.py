@@ -10,7 +10,7 @@ urlpatterns = [
     path('new', views.new, name='new'),
     path('coming_soon', views.coming_soon, name='coming_soon'),
     path('top', views.top, name='top'),
-    path('add_movie', views.addMovie, name='add_movie'),
+    path('add_movie', views.add_movie, name='add_movie'),
     path('update_movie/<str:slug>', views.updateMovie, name='update_movie'),
 
     # path('register', views, name='register'),

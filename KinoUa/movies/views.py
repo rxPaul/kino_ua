@@ -18,7 +18,12 @@ class MovieDetail(View):
 class CategoryDetail(View):
     def get(self, request, slug):
         category = Category.objects.get(slug__iexact=slug)
-        return render(request, 'movies/show_category.html', {'category': category})
+        movies = category.movies.all()
+        context = {
+            'category': category,
+            'movies': movies
+        }
+        return render(request, 'movies/show_category.html', context=context)
 
 
 class MovieListView(View):
@@ -48,7 +53,7 @@ def coming_soon(request):
     return render(request, 'movies/coming_soon.html')
 
 
-def addMovie(request):
+def add_movie(request):
     error = ''
     if request.method == 'POST':
         form = MovieCreateForm(request.POST, request.FILES)
