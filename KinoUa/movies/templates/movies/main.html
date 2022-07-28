@@ -14,7 +14,7 @@
         {% for movie in movies %}
             <div class="text-bg-secondary p-3">
                 <h3>
-                    Movie: {{movie.title}}
+                    <a href="{{ movie.get_absolute_url }}" text-decoration="none">{{movie.title}}</a>
                 </h3>
                 <p>
                     <img src="/static/images/{{movie.movie_poster}}" width="260" height="385"></p>

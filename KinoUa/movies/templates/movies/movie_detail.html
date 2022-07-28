@@ -20,7 +20,7 @@
             <div class="card-footer text-muted">
                 Categories:
                 {%  for category in movie.categories.all %}
-                    <a href="#">{{category.name}}</a>
+                    <a href="{{ category.get_absolute_url }}">{{category.name}}</a>
                 {% endfor %}
             </div>
         </div>

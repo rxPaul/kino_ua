@@ -7,7 +7,7 @@ class MovieAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'slug')
 
 
 class ActorAdmin(admin.ModelAdmin):

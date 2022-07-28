@@ -3,28 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.shortcuts import reverse
 from django.utils.text import slugify
 
+
 def gen_slug(s):
     return slugify(s, allow_unicode=True)
-
-class Category(models.Model):
-    name = models.CharField(max_length=150)
-    slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
-    movies = models.ManyToManyField('Movie', verbose_name='Movie')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = gen_slug(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('category', kwargs={'slug': self.slug})
 
 
 class Movie(models.Model):
@@ -32,7 +13,7 @@ class Movie(models.Model):
     description = models.TextField('Description')
     rating = models.FloatField('Rating', validators=[MinValueValidator(0), MaxValueValidator(10)], blank=True)
     year = models.IntegerField('Age')
-    categories = models.ManyToManyField('Category', verbose_name='Category')
+    categories = models.ManyToManyField('Category', blank=True, verbose_name='Category')
     actors = models.ManyToManyField('Actor')
     time_create = models.DateTimeField(auto_now_add=True, null=True)
     time_update = models.DateTimeField(auto_now=True, null=True)
@@ -53,10 +34,36 @@ class Movie(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('movie', kwargs={'slug': self.slug})
+        return reverse('movie_detail_url', kwargs={'slug': self.slug})
+
+    def get_edit_url(self):
+        return reverse('movie_detail_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = gen_slug(self.title)
+        super().save(*args, **kwargs)
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
+    movies = models.ManyToManyField(Movie, blank=True, verbose_name='Movie')
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def get_absolute_url(self):
+        return reverse('category_detail_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
 
 
 class Actor(models.Model):
@@ -66,9 +73,8 @@ class Actor(models.Model):
     birth_date = models.DateField(max_length=8, null=True)
     nationality = models.CharField(max_length=50)
 
-
     def __str__(self):
-        return f'{self.last_name} {self.first_name}'
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         verbose_name = 'Actor'
