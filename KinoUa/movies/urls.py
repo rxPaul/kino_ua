@@ -6,6 +6,7 @@ urlpatterns = [
     path('movie', views.MovieListView.as_view(), name='movies'),
     path('movie/<str:slug>/', views.MovieDetail.as_view(), name='movie_detail_url'),
     path('movie/<str:slug>/edit', views.MovieEdit.as_view(), name='movie_edit'),
+        path('movie/<str:slug>/delete', views.MovieDelete.as_view(), name='movie_delete'),
     path('category/', views.CategoryListView.as_view(), name='categories'),
     path('category/<str:slug>', views.CategoryDetail.as_view(), name='category_detail_url'),
     path('add_movie', views.add_movie, name='add_movie'),

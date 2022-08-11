@@ -11,13 +11,15 @@ class MovieCreateForm(forms.ModelForm):
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter movie title:'}),
-            'movie_poster': forms.ClearableFileInput(),
+            'movie_poster': forms.ClearableFileInput(attrs={
+                'class': 'btn btn-primary'}
+            ),
             'description': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter description:'}),
             'rating': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Rating:'}),
+                'placeholder': 'Choose your rating between 0 and 10'}),
             'year': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Year:'}),
